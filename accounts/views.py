@@ -4,7 +4,7 @@ from django.contrib import messages
 from .forms import *
 # Create your views here.
 
-def Registerview(request):
+def registerview(request):
     if (request.method=='POST'):
         user_form=Registerform(request.POST, request.FILES)
         if user_form.is_valid():
@@ -20,3 +20,19 @@ def Registerview(request):
     else:
         user_form=Registerform()
     return render(request,'accounts/register.html', {'user_form':user_form})
+
+def login(request):
+    if (request.method=='POST'):
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        user=auth.authenticate(username=username, password=password)
+        if user is not None:
+            auth.login(request,user)
+            return redirect('web:index')
+        else:
+            return redirect('accounts:login')
+    return render(request, 'accounts/login.html')
+
+def logout(request):
+    auth.logout(request)
+    return render(request, 'accounts/logout.html')
