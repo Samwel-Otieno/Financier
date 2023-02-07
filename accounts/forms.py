@@ -3,6 +3,7 @@ from django.contrib.auth.models import User, auth
 class Registerform(forms.ModelForm):
     password1=forms.CharField(label='password', widget=forms.PasswordInput)
     password2=forms.CharField(label='Confirm password', widget=forms.PasswordInput)
+    pic=forms.FileField(label='Profile picture')
 
     #model other parameters from the User method
     class Meta:
