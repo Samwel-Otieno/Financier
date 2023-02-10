@@ -21,8 +21,12 @@
             <li><a href="{% url 'accounts:login' %}">Login</a></li>
             <li><a href="{% url 'accounts:register' %}">Sign up</a></li>
         {% endif %}
-
-
     </ul>
+    <form action="{% url 'web:index' %}" method="post">
+        <h4><b><i>Contact us: </i></b></h4>
+        {% csrf_token %}
+        {{contact_form.as_p}}
+        <input type="submit" value="Send">
+    </form>
 </body>
 </html>
