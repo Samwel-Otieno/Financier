@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>blogs</title>
+</head>
+<body>
+    <h3><center><b><i>Today's Hots</i></b></center></h3>
+    <a href="{% url 'web:index' %}">Home</a>
+    <form action="{% url 'blog:blogs' %}" method="post" >
+        {% csrf_token %}
+        {% block content %}
+        {% for blog in blogs %}
+            <h2>{{blog.title}}</h2>
+            <p>{{blog.description}}</p>
+            <img src="{{ blog.image.url }}" alt="img" width="200" height="200">
+            <P>By {{blog.owner}} - {{blog.created}}</P><br>
+        {% endfor %}
+        {% endblock content %}
+    </form>
+</body>
+</html>
