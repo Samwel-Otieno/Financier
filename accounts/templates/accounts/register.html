@@ -7,7 +7,7 @@
     <title>register</title>
 </head>
 <body>
-    <form action="{% url 'accounts:register' %}" method="post">
+    <form action="{% url 'accounts:register' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{user_form.as_p}}
         <input type="submit" value="Sign up">
