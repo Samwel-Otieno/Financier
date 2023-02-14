@@ -15,9 +15,24 @@
         {% for blog in blogs %}
             <h2>{{blog.title}}</h2>
             <p>{{blog.description}}</p>
+            <a href="#">Read More</a> <br>
             <img src="{{ blog.image.url }}" alt="img" width="200" height="200">
             <P>By {{blog.owner}} - {{blog.created}}</P><br>
-        {% endfor %}
+            <h3>Comments</h3><br>
+            {% if not blog.comments.all %}
+                <p>0 comments.  </p> 
+                <a href="{% url 'blog:comments' %}">Add comment</a>
+            {% else %}
+                {% for comment in blog.comments.all %}
+                    <br>{{comment}}<br>
+                   <strong>
+                    {{comment.name}}, 
+                    {{comment.date_added}}
+                   </strong>
+                {% endfor %}
+            {% endif %} <br>
+            <a href="{% url 'blog:comments' %}">Add comment</a>
+        {% endfor %} <br><br>
         {% endblock content %}
     </form>
 </body>

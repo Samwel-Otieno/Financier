@@ -13,5 +13,14 @@ class Create_blogs(models.Model):
     def __str__(self):
         return self.title
 
-    def desctription(self):
-        return self.article[20+ '...']
+    def description(self):
+        return self.article[:20]+ '...'
+
+class Comment(models.Model):
+    blog=models.ForeignKey(Create_blogs, related_name='comments', on_delete=models.CASCADE)
+    name=models.CharField(max_length=20)
+    comment=models.TextField()
+    date_added=models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.comment

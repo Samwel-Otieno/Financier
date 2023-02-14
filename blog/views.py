@@ -20,3 +20,12 @@ def create_blog(request):
 def blog(request):
     blogs=Create_blogs.objects.all().order_by('created')
     return render(request, 'blog/blogs.html', {'blogs':blogs})
+
+def comments(request):
+    if (request.method=='POST'):
+        comment_form=Comment(request.POST)
+        if comment_form.is_valid():
+            comment_form.save()
+    else:
+        comment_form=Comment()
+    return render(request, 'blog/comments.html', {'comment_form':comment_form})
