@@ -1,8 +1,9 @@
 from django.shortcuts import render, redirect
-
-# Create your views here.
 from .forms import *
+from django.contrib.auth.decorators import login_required
+# Create your views here.
 
+@login_required(login_url="/accounts/login/")
 def create_blog(request):
     if request.method=='POST':
         create_blog_form=Create_blog(request.POST, request.FILES)

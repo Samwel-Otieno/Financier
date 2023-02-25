@@ -8,9 +8,13 @@
 </head>
 <body>
     <form action="{% url 'accounts:login' %}" method="post">
-        {% csrf_token %}
+        {% csrf_token %}   
+        <!-- redirect user to blog creation form after login     -->
+        {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{request.GET.next}}">
+        {% endif %}
         <input type="text" name="username" id="" placeholder="username">
-        <input type="text" name="password" id="" placeholder="password">
+        <input type="password" name="password" id="" placeholder="password">
         <input type="submit" value="Login">
     </form>
 </body>

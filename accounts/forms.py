@@ -1,5 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User, auth
+from django.contrib.auth.forms import SetPasswordForm
+from django.contrib.auth import get_user_model
 class Registerform(forms.ModelForm):
     password1=forms.CharField(label='password', widget=forms.PasswordInput)
     password2=forms.CharField(label='Confirm password', widget=forms.PasswordInput)
@@ -24,4 +26,10 @@ class Registerform(forms.ModelForm):
             raise forms.ValidationError("Passwords do not match")
         return password1
                 
+
+#logged in user password reset
+class SetPasswordForm(SetPasswordForm):
+    class Meta:
+        model=get_user_model()
+        fields=['newpassword1', 'newpassword2']
 

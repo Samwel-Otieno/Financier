@@ -14,12 +14,13 @@
             <li><a href="{% url 'accounts:logout' %}">Logout</a></li>
             <li><a href="{% url 'blog:blogs' %}">Our Blog</a></li>
             <li><a href="{% url 'blog:create' %}">Create Blog</a></li>
-            <li><a href="#">Change password</a></li> 
+            <li><a href="{% url 'accounts:reset' %}">Change password</a></li> 
             <li><a href="#">Donate </a></li>
         {% else %}
-            <li><a href="#">Blog</a></li>
+            <li><a href="{% url 'blog:blogs' %}">Blog</a></li>
             <li><a href="{% url 'accounts:login' %}">Login</a></li>
             <li><a href="{% url 'accounts:register' %}">Sign up</a></li>
+            <li><a href="{% url 'blog:create' %}">Create Blog</a></li>
         {% endif %}
     </ul>
     <form action="{% url 'web:index' %}" method="post">
