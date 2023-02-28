@@ -17,7 +17,7 @@ def registerview(request):
             # Save the User object
             new_user.save()
             messages.success(request, "Registration successful")
-            return redirect("accounts:register")
+            return redirect("accounts:login")
     else:
         user_form=Registerform()
     return render(request,'accounts/register.html', {'user_form':user_form})
