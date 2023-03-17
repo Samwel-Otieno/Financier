@@ -9,6 +9,7 @@
 <body>
     <h3><center><b><i>Today's Hots</i></b></center></h3>
     <a href="{% url 'web:index' %}">Home</a>
+    <a href="{% url 'blog:generatepdf' %}">Download articles</a>
     <form action="{% url 'blog:blogs' %}" method="post" >
         {% csrf_token %}
         {% block content %}
