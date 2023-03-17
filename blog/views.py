@@ -58,18 +58,18 @@ def generatepdf(request):
    
     #add the text lines to be printed 
     articles=Create_blogs.objects.all()
-    lines=[]
+    lines=['sam', 'oti', 'halisi']
     
-    for blogarticle in articles:
-        lines.append(blogarticle)
-        # lines.append(article.title)
-        # lines.append(article.article)
-        # lines.append(article.image)
-        # lines.append(article.owner)
-        # lines.append(article.created)
-        # print a break line
-        for i in range(0,10):
-            print("**--**--", end="")
+    # for blogarticle in articles:
+    #     # lines.append(blogarticle)
+    #     lines.append(blogarticle.title)
+    #     lines.append(blogarticle.article)
+    #     lines.append(blogarticle.image)
+    #     lines.append(blogarticle.owner)
+    #     lines.append(blogarticle.created)
+    #     # print a break line
+    #     for i in range(0,10):
+    #         print("**--**--", end="")
     #render the lines into the canvas 
 
     for line in lines:
