@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
-from .forms import *
 from django.http import FileResponse
+from .forms import *
 import io
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import letter
+
+
+
 
 # Create your views here.
 
@@ -42,21 +45,21 @@ def comments(request):
 
 def generatepdf(request):
     # Create a file-like buffer to receive PDF data.
-    buffer = io.BytesIO()
+    buff = io.BytesIO()
     # create a canvas 
-    canv=canvas.Canvas(buffer, pagesize=letter, bottomup=0)
+    canv=canvas.Canvas(buff, pagesize=letter, bottomup=0)
 
     # create a text object to be rendered in the canvas
-    textobject=canv.beginText()
-    textobject.setTextOrigin(inch,inch)
-    textobject.setFont("Helvetica", 14)
+    textobj=canv.beginText()
+    textobj.setTextOrigin(inch,inch)
+    textobj.setFont("Helvetica", 14)
    
     #add the text lines to be printed 
     articles=Create_blogs.objects.all()
     lines=[]
-
-    for article in articles:
-        lines.append(article)
+    
+    for blogarticle in articles:
+        lines.append(blogarticle)
         # lines.append(article.title)
         # lines.append(article.article)
         # lines.append(article.image)
@@ -68,12 +71,14 @@ def generatepdf(request):
     #render the lines into the canvas 
 
     for line in lines:
-        textobject.textLine(line)
+        textobj.textLine(line)
 
-    canv.drawText(textobject)
+    canv.drawText(textobj)
     canv.showPage()
     canv.save()
-    buffer.seek(0)
+    buff.seek(0)
+    
+  
 
 
-    return FileResponse(buffer, as_attachment=True, filename='Articles.pdf')
+    return FileResponse(buff, as_attachment=True, filename='Articles.pdf')
