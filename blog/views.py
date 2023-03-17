@@ -51,12 +51,12 @@ def generatepdf(request):
     lines=[]
 
     for article in articles:
+        lines.append(article)
         # lines.append(article.title)
         # lines.append(article.article)
         # lines.append(article.image)
         # lines.append(article.owner)
         # lines.append(article.created)
-        lines.append(article)
         # print a break line
         for i in range(0,10):
             print("**--**--", end="")
