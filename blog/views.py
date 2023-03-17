@@ -49,7 +49,7 @@ def generatepdf(request):
     # create a text object to be rendered in the canvas
     textobject=canv.beginText()
     textobject.setTextOrigin(inch,inch)
-    textobject.setFont('Rockwel', 12)
+    textobject.setFont("Helvetica", 14)
    
     #add the text lines to be printed 
     articles=Create_blogs.objects.all()
